@@ -42,7 +42,17 @@ app.get("/blogs/new", function(req, res) {
 });
 
 // CREATE ROUTE
-
+app.post("/blogs", function(req, res) {
+    //create a blog
+    Blog.create(req.body.blog, function(err, newBlog) {
+        if(err) {
+            res.render("new");
+        } else {
+            res.redirect("/blogs");
+            //redirect to the index page
+        }
+    });
+})
 
 app.listen(process.env.PORT, process.env.IP, function() {
    console.log("Server is running...") 
